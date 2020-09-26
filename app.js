@@ -29,7 +29,7 @@ function Metadata(sampleID){
         var trace3 = {
             domain: { x: [0, 1], y: [0, 1] },
             value: firstResult.wfreq,
-            title: { text: "Daily Hand Washing" },
+            title: { text: "Daily Frequency of Hand Washing" },
             type: "indicator",
             mode: "gauge+number"
         
@@ -112,28 +112,14 @@ function buildPlot(sampleID) {
         var layoutB = {
             title: 'Bubble chart of Bachteria',
             showlegend: false,
-            height: 600,
-            width: 600
+            height: 1200,
+            width: 1200
           };
           
           Plotly.newPlot('bubble', dataB, layoutB);
         
     });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function init(){
     var selectionDropDown = d3.select("#selDataset");
