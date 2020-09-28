@@ -1,8 +1,5 @@
 
 // Metadata Function will get the metadata and input the values in to the demo box.
-// function 2 we will create the two graphs
-// function 3 willl initializate the dashboard we will call function 1 and 2 with the first sample
-// function 4 will change everything when you use drop down \
 
 function Metadata(sampleID){
 
@@ -38,7 +35,6 @@ function Metadata(sampleID){
         var dataG = [trace3];
 
         var layoutG = {
-            //title: "Daily Hand Washing",
             width: 500,
             height: 350,
             margin: { t: 25, b: 25, l: 25, r: 25 },
