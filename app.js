@@ -1,5 +1,5 @@
 
-// Function 1 wil get the metadata and we wil input the values in the demo box
+// Metadata Function will get the metadata and input the values in to the demo box.
 // function 2 we will create the two graphs
 // function 3 willl initializate the dashboard we will call function 1 and 2 with the first sample
 // function 4 will change everything when you use drop down \
@@ -25,7 +25,8 @@ function Metadata(sampleID){
         Object.entries(firstResult).forEach(([key, value])=> {
             metadataLoc.append("h5").text(`${key}: ${value}`);
         })
-        //Gauge Plot
+        //Gauge Plot. I added the bonus section here because it uses the handwashing number from metaadata
+        //instead of recreating it all at the bottome of the code.
         var trace3 = {
             domain: { x: [0, 1], y: [0, 1] },
             value: firstResult.wfreq,
@@ -60,23 +61,19 @@ function Metadata(sampleID){
 }
 
 
-
+//The buildPolt function is used to create the the bar and bubble graphs.
 function buildPlot(sampleID) {
     d3.json("samples.json").then((importedData) => {
         //console.log(importedData);
         var impData = importedData.samples;
-        //var washFreqData = importedData.metadata;
         //console.log(impData);
 
         // Get every sample id once we input in the function 
         var metadataList = impData.filter(sampleObj => sampleObj.id == sampleID) 
-        //var washFreqNum = washFreqData.filter(washNum => washNum.wfreq == sampleID)
         var firstResult = metadataList[0];
-        //var firstWash = washFreqNum[0];
         var sampleValues = firstResult.sample_values;
         var otuIds = firstResult.otu_ids;
         var otu_labels = firstResult.otu_labels;
-        //var washFreq = firstWash.wfreq;
         console.log(firstResult);
         var trace1 = {
             y: otuIds.slice(0,10).map(otuID => `OTU ${otuID}`).reverse(),
@@ -120,7 +117,7 @@ function buildPlot(sampleID) {
         
     });
 }
-
+//This function initializes the drop-down and updates the date and graphs with each new choice.
 function init(){
     var selectionDropDown = d3.select("#selDataset");
 
