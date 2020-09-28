@@ -60,11 +60,10 @@ function Metadata(sampleID){
 //The buildPolt function is used to create the the bar and bubble graphs.
 function buildPlot(sampleID) {
     d3.json("samples.json").then((importedData) => {
-        //console.log(importedData);
         var impData = importedData.samples;
         //console.log(impData);
 
-        // Get every sample id once we input in the function 
+        //Get every sample id once we input in the function 
         var metadataList = impData.filter(sampleObj => sampleObj.id == sampleID) 
         var firstResult = metadataList[0];
         var sampleValues = firstResult.sample_values;
@@ -87,7 +86,7 @@ function buildPlot(sampleID) {
 
     Plotly.newPlot("bar", data, layout);
 
-        // bubble plot
+        //Bubble plot
         var trace2 = {
             x: otuIds,
             y: sampleValues,
@@ -117,7 +116,7 @@ function buildPlot(sampleID) {
 function init(){
     var selectionDropDown = d3.select("#selDataset");
 
-    // use d3 to get the names from the samples.json
+    //Use d3 to get the names from the samples.json
     d3.json("samples.json").then((data)=>{
         var sampleNames = data.names;
 
@@ -128,7 +127,7 @@ function init(){
                 .property("value", dataSample)
         });
 
-        // get the first sample from the list and build graphs
+        //Get the first sample from the list and build graphs
         var initialSample = sampleNames[0];
         buildPlot(initialSample);
         Metadata(initialSample);
@@ -137,7 +136,7 @@ function init(){
 
 
 function optionChanged(nextSample){
-    // let get the data of the next sample
+    //Get the data of the next sample
     buildPlot(nextSample);
     Metadata(nextSample); 
 }
